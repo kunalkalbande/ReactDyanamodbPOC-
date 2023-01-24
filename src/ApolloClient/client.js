@@ -11,7 +11,7 @@ import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
 export const client = new ApolloClient({
   //uri: "https://beta.pokeapi.co/graphql/v1beta",
   //uri: "http://localhost:4000/graphql",
-  uri: "http://localhost:4000/",
+  uri: "http://localhost:4000/api",
   fetchOptions: {
     mode: 'no-cors',
   },
