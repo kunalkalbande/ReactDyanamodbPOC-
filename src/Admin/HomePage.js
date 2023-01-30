@@ -3,11 +3,13 @@ import LogoutPage from '../Login/Logout'
 import { useNavigate} from "react-router-dom";
 import { useQuery,useMutation } from "@apollo/client";
 import {Create_User,QUERY_User} from "../utils/queries"
-
+import { usersApi } from "../utils/users"
+import { useAuth0 } from '@auth0/auth0-react';
 
 const  HomePage = (props) =>  {
   const nav = useNavigate();
   const [authenticated, setauthenticated] = useState(null);
+  const [userdata, setUserData] = useState([]);
   //  const [createUser, ] = useMutation(Create_User);
   
   // createUser({
@@ -19,21 +21,96 @@ const  HomePage = (props) =>  {
   //     }
   //   }
   // });
+  const fetchUser = async () => {
+    const results = await fetchApi();
+    //console.log(results);
+    setUserData(results);
+  };
 
-    const { loading, error, data } = useQuery(QUERY_User);
+  // const { getAccessTokenSilently } = useAuth0();
+  //   const [data, setPosts] = useState(null);
+  //    const [tokens, setToken] = useState(null);
+  //    const use_QUERY = `
+  //   {
+  //     users {
+  //       _id
+  //       name
+  //       email
+  //       password
+  //     }
+  //   }
+  // `;
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const token = await getAccessTokenSilently({
+  //         audience: 'http://localhost:4000/api',
+  //         scope: "read:current_user read:posts read:users",
+  //         client_id:"elDkkwevaKVzAYMVem9GMLwN1TQgRN6C",
+  //         //client_secret:"NIak5VTeIyvbbLn_Tx75oGSOohmL67bWDeBpUUTaCbS_T78DpcnyjcAQvQBuZzvz",
+  //       });
+        
+  //       setToken(token);
+  //       const response = await fetch('http://localhost:4000/api', {
+  //         method: "POST",
+  //         headers: { 
+  //           "Content-Type": "application/json",
+  //           "Authorization": token ? `Bearer ${token}` : null
+  //          },
+  //         body: JSON.stringify({ query: use_QUERY })
+  //         },
+  //         // data: {
+  //         //   query
+  //         //   }
+  //       );
+  //       console.log(response);
+  //       setPosts(await response.json());
+  //     } catch (e) {
+  //       console.log(e);
+  //       console.error(e);
+  //     }
+  //   })();
+  // }, [getAccessTokenSilently]);
+ 
+ 
+  const { loading, error, data } = useQuery(QUERY_User);
+ console.log('data',data);
 
- useEffect(() => {
-  const loggedInUser = localStorage.getItem("authenticated");
-  if (loggedInUser) {
-   setauthenticated(loggedInUser);
-  }
- }, []);
+const fetchApi = () => {
+  return new Promise((resolve) => {
+      setTimeout(async () => {
+          var data = await usersApi.getAllUsers();
+          //console.log(data);
+          resolve(data.users);
+      }, 500);
+  });
+};
 
- if (!authenticated) {
-  nav('/');
- } else {
+
+
+// if (!data) {
+//   return <div>Loading...</div>;
+// }
+
+// useEffect(() => {
+//   const init = async () => {
+//       await fetchUser();
+//   };
+//   init();
+// }, []);
+
+//  useEffect(() => {
+//   const loggedInUser = localStorage.getItem("authenticated");
+//   if (loggedInUser) {
+//    setauthenticated(loggedInUser);
+//   }
+//  }, []);
+
+//  if (!authenticated) {
+//   nav('/');
+//  } else {
   if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error : {error.message}</p>;
+     if (error) return <p>Error : {error.message}</p>;
   return (
      <div className="App">
       <LogoutPage/>
@@ -55,7 +132,7 @@ const  HomePage = (props) =>  {
       </table>
      </div>
   );
- }
+ //}
 }
 
 export default HomePage;

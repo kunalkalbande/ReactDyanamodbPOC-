@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.4",
+    "@apollo/link-context": "^2.0.0-beta.3",
+    "@auth0/auth0-react": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "apollo-link-rest": "^0.9.0",
+    "apollo-upload-client": "^17.0.0",
     "bootstrap": "^5.2.3",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
