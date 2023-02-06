@@ -25,15 +25,15 @@ const LoginPage = (props) => {
     const handleFormSubmit = async (event) => {
       event.preventDefault();
       
-      try {
-        if(formState.username==='test' && formState.password==='1234'){
-          setauthenticated(true)
-          localStorage.setItem("authenticated", true);
-          nav('/home');
-        }
-      } catch (e) {
-        console.error(e);
-      }
+//       try {
+//         if(formState.username==='test' && formState.password==='1234'){
+//           setauthenticated(true)
+//           localStorage.setItem("authenticated", true);
+//           nav('/home');
+//         }
+//       } catch (e) {
+//         console.error(e);
+//       }
       
     // clear form values
       setFormState({
