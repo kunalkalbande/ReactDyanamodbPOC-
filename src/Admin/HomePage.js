@@ -87,10 +87,11 @@ const fetchApi = () => {
 };
 
 
+const handleAddUser = async (event) => {
+  event.preventDefault();
+  nav('/adduser');
+};
 
-// if (!data) {
-//   return <div>Loading...</div>;
-// }
 
 // useEffect(() => {
 //   const init = async () => {
@@ -112,11 +113,19 @@ const fetchApi = () => {
   if (loading) return <p>Loading...</p>;
      if (error) return <p>Error : {error.message}</p>;
   return (
+    <>
+    <div>
+    <form className="d-flex" role="search" onSubmit={handleAddUser}>
+      <button className="btn btn-outline-success" type="submit" onSubmit={handleAddUser}>Add User</button>
+    </form>
+    </div>
+    <div>
       <table className="table table-striped">
       <thead>
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
+      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -124,10 +133,13 @@ const fetchApi = () => {
     <tr key={user._id}>
       <td>{user.name}</td>
       <td>{user.email}</td>
+      <td><a href="/edit">Edit</a> || <a href="/delete">Delete</a></td>
     </tr>
     ))}
     </tbody>
       </table>
+      </div>
+      </>
   );
  //}
 }
