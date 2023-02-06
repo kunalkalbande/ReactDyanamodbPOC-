@@ -3,6 +3,7 @@ import React, { useEffect,useState} from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { setContext } from "@apollo/link-context";
 import App from './App';
+
 function Apollowrapper({children}){
     const {isAuthenticated, getAccessTokenSilently } = useAuth0();
     const [bearerToken, setBearerToken ] = useState(null);
@@ -46,6 +47,8 @@ getToken();
         cache: new InMemoryCache(),
       });
       console.log("bearerToken:",children);
-      return <ApolloProvider client={client}><App/></ApolloProvider>
+      return <ApolloProvider client={client}>
+        <App/>
+        </ApolloProvider>
 }
 export default Apollowrapper

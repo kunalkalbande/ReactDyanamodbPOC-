@@ -74,7 +74,7 @@ const  HomePage = (props) =>  {
  
  
   const { loading, error, data } = useQuery(QUERY_User);
- console.log('data',data);
+ //console.log('data',data);
 
 const fetchApi = () => {
   return new Promise((resolve) => {
@@ -112,8 +112,6 @@ const fetchApi = () => {
   if (loading) return <p>Loading...</p>;
      if (error) return <p>Error : {error.message}</p>;
   return (
-     <div className="App">
-      <LogoutPage/>
       <table className="table table-striped">
       <thead>
     <tr>
@@ -130,7 +128,6 @@ const fetchApi = () => {
     ))}
     </tbody>
       </table>
-     </div>
   );
  //}
 }

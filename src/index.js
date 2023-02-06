@@ -34,7 +34,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // );
 
 const onRedirectCallback= (appstate) => {
-  Navigate(appstate?.target || window.location.pathname)
+  Navigate(appstate?.targetUrl || window.location.pathname)
 }
 
 root.render(
@@ -46,7 +46,7 @@ root.render(
          redirect_uri: window.location.origin,
          audience: 'http://localhost:4000/api',
       }}
-      //onRedirectCallback={onRedirectCallback}
+     // onRedirectCallback={onRedirectCallback}
       >
       <Apollowrapper>
   </Apollowrapper>
