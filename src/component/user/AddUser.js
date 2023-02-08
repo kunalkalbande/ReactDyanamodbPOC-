@@ -24,7 +24,6 @@ const AddUserPage = (props) => {
       event.preventDefault();
       try {
         if(formState.username!== null){
-            
             createUser({
     variables: {
       userInput: {

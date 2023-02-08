@@ -10,9 +10,30 @@ export const Create_User = gql`
   }
   `;
 
-  export const QUERY_User = gql`
+export const Edit_User = gql`
+  mutation editUser($id: String!,$userInput: UserInput){
+    editUser(id: $id, userInput: $userInput){
+      _id
+      name
+      email
+      password
+    }
+  }
+  `;
+
+export const QUERY_User = gql`
 query users {
   users {
+    _id
+    name
+    email
+    password
+  }
+}`;
+
+export const get_User = gql`
+query getUser($id: String!) {
+  getUser(id: $id) {
     _id
     name
     email

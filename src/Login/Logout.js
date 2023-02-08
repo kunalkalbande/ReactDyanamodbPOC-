@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const  LogoutPage = (props) =>  {
-    const nav = useNavigate();
+    //const nav = useNavigate();
     const { logout } = useAuth0();
 
-    const handleLogout = async (event) => {
-        event.preventDefault();
-        localStorage.setItem("authenticated",false);
-        nav('/');
-    };
+    // const handleLogout = async (event) => {
+    //     event.preventDefault();
+    //     localStorage.setItem("authenticated",false);
+    //     nav('/');
+    // };
 
     return(
   //       <div className="App">

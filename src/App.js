@@ -9,6 +9,7 @@ import Userpage from './Login/user'
 import Home from './Admin/Home'
 import SideBarPage from './Menu/SideBar'
 import AddUserPage from './component/user/AddUser'
+import EditUser from './component/user/EditUser'
 function App() {
   const { isAuthenticated } = useAuth0();
   return (
@@ -22,7 +23,7 @@ function App() {
     </BrowserRouter> */}
     
     <BrowserRouter>
-    <SideBarPage></SideBarPage>
+    {/* <SideBarPage></SideBarPage> */}
       <Routes>
     {!isAuthenticated ? (
           <Route exact path="/" element={<LoginPage/>} />
@@ -31,8 +32,9 @@ function App() {
            <Route  path="/user" element={<Userpage/>} />
            <Route  path="/home" element={<HomePage/>} />
            <Route  path="/adduser" element={<AddUserPage/>} />
+           <Route path="/edit/:id" element={<EditUser />} />
            <Route  path="/" element={<Home/>} />
-           <Route exact path="/" element={<LogoutPage/>} />  
+           <Route exact path="/" element={<LogoutPage/>} /> 
         </>}
         </Routes>
         </BrowserRouter> 

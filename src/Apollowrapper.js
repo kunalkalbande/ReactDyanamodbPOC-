@@ -3,7 +3,7 @@ import React, { useEffect,useState} from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { setContext } from "@apollo/link-context";
 import App from './App';
-
+import SideBarPage from './Menu/SideBar'
 function Apollowrapper({children}){
     const {isAuthenticated, getAccessTokenSilently } = useAuth0();
     const [bearerToken, setBearerToken ] = useState(null);
@@ -48,7 +48,9 @@ getToken();
       });
       console.log("bearerToken:",children);
       return <ApolloProvider client={client}>
+        <SideBarPage></SideBarPage>
         <App/>
+        
         </ApolloProvider>
 }
 export default Apollowrapper

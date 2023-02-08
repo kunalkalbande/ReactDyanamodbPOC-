@@ -133,7 +133,7 @@ const handleAddUser = async (event) => {
     <tr key={user._id}>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td><a href="/edit">Edit</a> || <a href="/delete">Delete</a></td>
+      <td><a href={"/edit/"+user._id}>Edit</a> || <a href="/delete">Delete</a></td>
     </tr>
     ))}
     </tbody>
