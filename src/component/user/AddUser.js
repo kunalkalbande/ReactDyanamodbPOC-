@@ -32,12 +32,12 @@ const AddUserPage = (props) => {
         password: formState.password      }
     }
   });
-  nav('/home');
+  
         }
       } catch (e) {
         console.error(e);
       }
-      
+      nav('/home');
     // clear form values
       setFormState({
         fname: "",

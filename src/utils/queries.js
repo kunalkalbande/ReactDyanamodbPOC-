@@ -41,6 +41,16 @@ query getUser($id: String!) {
   }
 }`;
 
+export const delete_User = gql`
+mutation deleteUser($id: String!) {
+  deleteUser(id: $id) {
+    _id
+    name
+    email
+    password
+  }
+}`;
+
 // export const QUERY_User = gql`
 // query users($id: Int) {
 //   users(id: $id) {

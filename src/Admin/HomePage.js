@@ -2,7 +2,7 @@ import React, { useEffect,useState} from "react";
 import LogoutPage from '../Login/Logout'
 import { useNavigate} from "react-router-dom";
 import { useQuery,useMutation } from "@apollo/client";
-import {Create_User,QUERY_User} from "../utils/queries"
+import {Create_User,QUERY_User,delete_User} from "../utils/queries"
 import { usersApi } from "../utils/users"
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -74,7 +74,14 @@ const  HomePage = (props) =>  {
  
  
   const { loading, error, data } = useQuery(QUERY_User);
+  const [deleteUser] = useMutation(delete_User);
  //console.log('data',data);
+
+//  useEffect(()=>{
+//   if(data){
+//     setUserData(data);
+//   }
+//  },[data])
 
 const fetchApi = () => {
   return new Promise((resolve) => {
@@ -92,6 +99,13 @@ const handleAddUser = async (event) => {
   nav('/adduser');
 };
 
+const deleteModalOpen = (_id) => {
+  deleteUser({
+    variables: {
+      id: _id,
+      }
+  });
+ }
 
 // useEffect(() => {
 //   const init = async () => {
@@ -133,7 +147,7 @@ const handleAddUser = async (event) => {
     <tr key={user._id}>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td><a href={"/edit/"+user._id}>Edit</a> || <a href="/delete">Delete</a></td>
+      <td><a href={"/edit/"+user._id}>Edit</a> || <a href="#" onClick={() => deleteModalOpen(user._id)}>Delete</a></td>
     </tr>
     ))}
     </tbody>
